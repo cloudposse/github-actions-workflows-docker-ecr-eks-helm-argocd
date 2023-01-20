@@ -105,7 +105,7 @@ jobs:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
 
   cd:
-    uses: cloudposse/github-actions-workflows/.github/workflows/cd-preview-helmfile.yml@main
+    uses: cloudposse/github-actions-workflows/.github/workflows/cd-preview-argocd.yml@main
     needs: [ ci ]
     if: ${{ always() }}
     with:

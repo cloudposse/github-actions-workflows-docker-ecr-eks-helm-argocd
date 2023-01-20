@@ -107,7 +107,7 @@ jobs:
 
   cd:
     name: cd / production
-    uses: cloudposse/github-actions-workflows/.github/workflows/cd-helmfile.yml@main
+    uses: cloudposse/github-actions-workflows/.github/workflows/cd-argocd.yml@main
     needs: [ promote ]
     with:
       image: ${{ needs.promote.outputs.image }}
