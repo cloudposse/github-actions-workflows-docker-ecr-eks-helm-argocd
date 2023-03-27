@@ -114,6 +114,7 @@ jobs:
       tag: ${{ needs.promote.outputs.tag }}
       repository: ${{ inputs.repository }}
       environment: production
+      synchronously: true
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}

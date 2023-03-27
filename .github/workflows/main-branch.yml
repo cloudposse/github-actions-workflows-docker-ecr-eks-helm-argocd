@@ -89,6 +89,7 @@ jobs:
       tag: ${{ needs.ci.outputs.tag }}
       repository: ${{ inputs.repository }}
       environment: dev
+      synchronously: true
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}
