@@ -87,7 +87,7 @@ jobs:
     with:
       image: ${{ needs.ci.outputs.image }}
       tag: ${{ needs.ci.outputs.tag }}
-      repository: ${{ inputs.repository }}
+      repository: ${{ inputs.organization }}/${{ inputs.repository }}
       environment: dev
       synchronously: true
     secrets:
