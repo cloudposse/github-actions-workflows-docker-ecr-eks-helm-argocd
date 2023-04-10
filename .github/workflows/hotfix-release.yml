@@ -112,6 +112,7 @@ jobs:
     with:
       image: ${{ needs.promote.outputs.image }}
       tag: ${{ needs.promote.outputs.tag }}
+      organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
       environment: production
       synchronously: true
