@@ -119,6 +119,10 @@ jobs:
       exclusive: false
       env-label: |
         preview: deploy
+        qa1: deploy/qa1
+        qa2: deploy/qa2
+        qa3: deploy/qa3
+        qa4: deploy/qa4
       synchronously: true
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
