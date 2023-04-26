@@ -94,7 +94,7 @@ concurrency:
 
 jobs:
   ci:
-    uses: cloudposse/github-actions-workflows/.github/workflows/ci-dockerized-app-build.yml@main
+    uses: cloudposse/github-actions-workflows/.github/workflows/ci-dockerized-app-build.yml@upstream-improvements
     with:
       organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
@@ -105,7 +105,7 @@ jobs:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
 
   cd:
-    uses: cloudposse/github-actions-workflows/.github/workflows/cd-preview-argocd.yml@main
+    uses: cloudposse/github-actions-workflows/.github/workflows/cd-preview-argocd.yml@upstream-improvements
     needs: [ ci ]
     if: ${{ always() }}
     with:
@@ -116,6 +116,9 @@ jobs:
       open: ${{ inputs.open }}
       labels: ${{ inputs.labels }}
       ref: ${{ inputs.ref }}
+      path: ${{ inputs.path }}
+      toolchain: ${{ inputs.toolchain }}
+      values_file: ${{ inputs.values_file }}
       exclusive: false
       env-label: |
         preview: deploy

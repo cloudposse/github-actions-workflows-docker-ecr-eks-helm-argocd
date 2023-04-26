@@ -98,6 +98,9 @@ jobs:
       organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
       environment: staging
+      path: ${{ inputs.path }}
+      toolchain: ${{ inputs.toolchain }}
+      values_file: ${{ inputs.values_file }}
       synchronously: true
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
@@ -113,6 +116,9 @@ jobs:
       organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
       environment: production
+      path: ${{ inputs.path }}
+      toolchain: ${{ inputs.toolchain }}
+      values_file: ${{ inputs.values_file }}
       synchronously: true
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
