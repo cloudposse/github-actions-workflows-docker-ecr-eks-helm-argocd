@@ -58,6 +58,11 @@ on:
         description: Helmfile values file, or helm chart values file
         default: ""
         required: false
+      tests_enabled:
+        description: "Enable CI Test Stage"
+        type: boolean
+        default: true
+        required: false
     secrets:
       secret-outputs-passphrase:
         description: "Passphrase to encrypt/decrypt secret outputs with gpg. For more information [read](https://github.com/cloudposse/github-action-secret-outputs)"
@@ -89,6 +94,8 @@ jobs:
     with:
       organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
+      tests_enabled: ${{ inputs.tests_enabled }}
+
     secrets:
       ecr-region: ${{ secrets.ecr-region }}
       ecr-iam-role: ${{ secrets.ecr-iam-role }}
