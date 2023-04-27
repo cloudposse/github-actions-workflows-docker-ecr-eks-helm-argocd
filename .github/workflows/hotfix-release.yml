@@ -68,6 +68,10 @@ on:
         type: boolean
         default: true
         required: false
+      synchronously:
+        type: boolean
+        description: "Wait until ArgoCD successfully apply the changes"
+        default: true
     secrets:
       secret-outputs-passphrase:
         description: "Passphrase to encrypt/decrypt secret outputs with gpg. For more information [read](https://github.com/cloudposse/github-action-secret-outputs)"
@@ -139,7 +143,7 @@ jobs:
       path: ${{ inputs.path }}
       toolchain: ${{ inputs.toolchain }}
       values_file: ${{ inputs.values_file }}
-      synchronously: true
+      synchronously: ${{ inputs.synchronously }}
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}
