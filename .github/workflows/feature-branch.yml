@@ -130,7 +130,7 @@ jobs:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
 
   cd:
-    uses: cloudposse/github-actions-workflows/.github/workflows/cd-preview-argocd.yml@main
+    uses: cloudposse/github-actions-workflows/.github/workflows/cd-preview-argocd.yml@bugfix/cannot-assume-role
     needs: [ ci ]
     if: ${{ always() }}
     with:
