@@ -73,6 +73,11 @@ on:
         type: boolean
         description: "Wait until ArgoCD successfully apply the changes"
         default: true
+      runs-on:
+        description: "Overrides job runs-on setting (json-encoded list)"
+        type: string
+        required: false
+        default: '["ubuntu-latest"]'
     secrets:
       secret-outputs-passphrase:
         description: "Passphrase to encrypt/decrypt secret outputs with gpg. For more information [read](https://github.com/cloudposse/github-action-secret-outputs)"
@@ -105,6 +110,7 @@ jobs:
       organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
       version: ${{ inputs.version }}
+      runs-on: ${{ inputs.runs-on }}
     secrets:
       ecr-region: ${{ secrets.ecr-region }}
       ecr-iam-role: ${{ secrets.ecr-iam-role }}
@@ -125,6 +131,7 @@ jobs:
       toolchain: ${{ inputs.toolchain }}
       values_file: ${{ inputs.values_file }}
       synchronously: ${{ inputs.synchronously }}
+      runs-on: ${{ inputs.runs-on }}
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}
@@ -143,6 +150,7 @@ jobs:
       toolchain: ${{ inputs.toolchain }}
       values_file: ${{ inputs.values_file }}
       synchronously: ${{ inputs.synchronously }}
+      runs-on: ${{ inputs.runs-on }}
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}

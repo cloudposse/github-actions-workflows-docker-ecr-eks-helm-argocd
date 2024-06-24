@@ -72,6 +72,11 @@ on:
         type: boolean
         description: "Wait until ArgoCD successfully apply the changes"
         default: true
+      runs-on:
+        description: "Overrides job runs-on setting (json-encoded list)"
+        type: string
+        required: false
+        default: '["ubuntu-latest"]'
     secrets:
       secret-outputs-passphrase:
         description: "Passphrase to encrypt/decrypt secret outputs with gpg. For more information [read](https://github.com/cloudposse/github-action-secret-outputs)"
@@ -104,7 +109,7 @@ jobs:
       organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
       tests_enabled: ${{ inputs.tests_enabled }}
-
+      runs-on: ${{ inputs.runs-on }}
     secrets:
       ecr-region: ${{ secrets.ecr-region }}
       ecr-iam-role: ${{ secrets.ecr-iam-role }}
@@ -116,7 +121,7 @@ jobs:
     uses: cloudposse/github-actions-workflows/.github/workflows/controller-hotfix-release.yml@main
     with:
       ref: ${{ github.sha }}
-
+      runs-on: ${{ inputs.runs-on }}
   promote:
     needs: [release]
     uses: cloudposse/github-action-workflows/.github/workflows/ci-dockerized-app-promote.yml@main
@@ -124,6 +129,7 @@ jobs:
       organization: ${{ inputs.organization }}
       repository: ${{ inputs.repository }}
       version: ${{ needs.release.outputs.version }}
+      runs-on: ${{ inputs.runs-on }}
     secrets:
       ecr-region: ${{ secrets.ecr-region }}
       ecr-iam-role: ${{ secrets.ecr-iam-role }}
@@ -144,6 +150,7 @@ jobs:
       toolchain: ${{ inputs.toolchain }}
       values_file: ${{ inputs.values_file }}
       synchronously: ${{ inputs.synchronously }}
+      runs-on: ${{ inputs.runs-on }}
     secrets:
       secret-outputs-passphrase: ${{ secrets.secret-outputs-passphrase }}
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}
@@ -154,6 +161,7 @@ jobs:
     with:
       ref: ${{ github.ref }}
       target_branch: ${{ inputs.default_branch }}
+      runs-on: ${{ inputs.runs-on }}
     secrets:
       github-private-actions-pat: ${{ secrets.github-private-actions-pat }}
 
